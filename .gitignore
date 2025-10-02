@@ -1,0 +1,23 @@
+# Build directories
+build/
+
+# CMake files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+
+# Compiled binaries
+BossMonster
+*.exe
+
+# Object files
+*.o
+*.obj
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
