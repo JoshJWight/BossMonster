@@ -5,6 +5,7 @@
 
 #include "GameState.hh"
 #include "Graphics.hh"
+#include "Controls.hh"
 
 class GameController {
 public:
@@ -12,9 +13,13 @@ public:
 
     void mainLoop();
 private:
+    void tick();
+
+    int m_currentTick;
+
     std::shared_ptr<GameState> m_gameState;
     std::shared_ptr<Graphics> m_graphics;
-
+    std::shared_ptr<Controls> m_controls;
 
 };
 

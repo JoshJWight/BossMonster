@@ -8,7 +8,7 @@ public:
     Ability(int startTick)
         : m_startTick(startTick)
     {}
-    virtual bool finished(int tickNo)
+    virtual bool finished(int tickNo) const
     {
         return tickNo >= m_startTick + m_duration;
     }

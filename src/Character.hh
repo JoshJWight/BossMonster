@@ -6,16 +6,22 @@
 
 #include <vector>
 
+enum ControllerType {
+    PLAYER,
+    AI
+};
+
 class Character {
 public:
     Character(point_t _position)
         : position(_position)
     {}
     
-    //State
-
+    //Permanent attributes
     int id;
+    ControllerType controllerType;
 
+    //State
     point_t position;
     std::vector<Ability> activeAbilities;
 

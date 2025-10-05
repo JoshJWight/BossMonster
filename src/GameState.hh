@@ -2,10 +2,11 @@
 #define __GAMESTATE_HH__
 
 #include <vector>
+#include <memory>
 #include "Character.hh"
 
 struct GameState {
-    std::vector<Character> characters;
+    std::vector<std::shared_ptr<Character>> characters;
 
 };
 
