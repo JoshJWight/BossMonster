@@ -6,6 +6,8 @@
 #include "Character.hh"
 
 struct GameState {
+    int playerId;
+
     std::vector<std::shared_ptr<Character>> characters;
 
 };

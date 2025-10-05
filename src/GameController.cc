@@ -5,13 +5,15 @@
 
 GameController::GameController() 
     : m_gameState(std::make_shared<GameState>())
-    , m_graphics(std::make_shared<Graphics>())
+    , m_graphics(std::make_shared<Graphics>(1000,1000))
     , m_currentTick(0)
 {
     std::shared_ptr<Character> hero(std::make_shared<Character>(point_t(0,0)));
     hero->id = 1;
+    hero->size = point_t(1,1);
     hero->controllerType = PLAYER;
     m_gameState->characters.push_back(hero);
+    m_gameState->playerId = hero->id;
 }
 
 void GameController::mainLoop() {
@@ -19,9 +21,8 @@ void GameController::mainLoop() {
         m_currentTick++;
         m_controls->tick();
         tick();
-        m_graphics->render();
+        m_graphics->render(m_gameState);
         std::this_thread::sleep_for(std::chrono::milliseconds(1000 / 60));
-        std::cout << "Hello World" << std::endl;
     }
 }
 
