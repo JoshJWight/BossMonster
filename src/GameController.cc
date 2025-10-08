@@ -12,6 +12,7 @@ GameController::GameController()
     hero->id = 1;
     hero->size = point_t(1,1);
     hero->controllerType = PLAYER;
+    hero->setupSprites({"smiley.png"});
     m_gameState->characters.push_back(hero);
     m_gameState->playerId = hero->id;
 }
