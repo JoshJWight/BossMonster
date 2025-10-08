@@ -6,6 +6,7 @@
 GameController::GameController() 
     : m_gameState(std::make_shared<GameState>())
     , m_graphics(std::make_shared<Graphics>(1000,1000))
+    , m_controls(std::make_shared<Controls>())
     , m_currentTick(0)
 {
     std::shared_ptr<Character> hero(std::make_shared<Character>(point_t(0,0)));
@@ -13,7 +14,18 @@ GameController::GameController()
     hero->size = point_t(1,1);
     hero->controllerType = PLAYER;
     hero->setupSprites({"smiley.png"});
+    hero->angle_deg = 0;
+
+    std::shared_ptr<Character> npc(std::make_shared<Character>(point_t(5,5)));
+    npc->id = 2;
+    npc->size = point_t(1,1);
+    npc->controllerType = AI;
+    npc->setupSprites({"frowny.png"});
+    npc->angle_deg = 45;
+
+
     m_gameState->characters.push_back(hero);
+    m_gameState->characters.push_back(npc);
     m_gameState->playerId = hero->id;
 }
 
@@ -46,10 +58,10 @@ void GameController::tick() {
 
         if(character->controllerType == PLAYER && !animationLocked) {
             if(m_controls->up) {
-                character->position.y -= 1;
+                character->position.y += 1;
             }
             if(m_controls->down) {
-                character->position.y += 1;
+                character->position.y -= 1;
             }
             if(m_controls->left) {
                 character->position.x -= 1;

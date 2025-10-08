@@ -4,9 +4,9 @@
 #include <algorithm>
 
 Graphics::Graphics(int windowWidth, int windowHeight)
-    :m_window(sf::VideoMode(windowWidth, windowHeight), "Fixed History"),
+    :m_window(sf::VideoMode(windowWidth, windowHeight), "You're The Boss Monster!"),
      m_windowSize(windowWidth, windowHeight),
-     m_cameraScale(windowWidth / 500.0)
+     m_cameraScale(windowWidth / 30.0)
 {
     m_window.setMouseCursorVisible(true);
 }
@@ -47,7 +47,10 @@ void Graphics::setSpriteScale(sf::Sprite & sprite, point_t worldSize)
 
     m_window.clear();
 
-    
+    for(auto& character : gameState->characters)
+    {
+        drawCharacter(character.get());
+    }
 
 
     m_window.display();
