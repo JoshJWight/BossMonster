@@ -59,16 +59,16 @@ void GameController::tick() {
 
         if(character->controllerType == PLAYER && !animationLocked) {
             if(m_controls->up) {
-                character->position.y += 1;
+                character->position.y += character->maxSpeed;
             }
             if(m_controls->down) {
-                character->position.y -= 1;
+                character->position.y -= character->maxSpeed;
             }
             if(m_controls->left) {
-                character->position.x -= 1;
+                character->position.x -= character->maxSpeed;
             }
             if(m_controls->right) {
-                character->position.x += 1;
+                character->position.x += character->maxSpeed;
             }
         }
 

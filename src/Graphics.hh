@@ -27,6 +27,9 @@ public:
     void setSpriteScale(sf::Sprite & sprite, point_t worldSize);
     point_t worldToCamera(point_t worldPoint);
     point_t cameraToWorld(sf::Vector2f cameraPoint);
+
+
+    sf::Sprite m_backgroundSprite;
 };
 
 #endif

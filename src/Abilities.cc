@@ -8,5 +8,5 @@ Dash::Dash(int startTick, point_t direction)
 
 point_t Dash::movementVector(int tickNo)
 {
-    return m_direction;
+    return m_direction * DASH_SPEED;
 }

@@ -35,6 +35,7 @@ public:
     point_t size;
     ControllerType controllerType;
     std::vector<sf::Sprite> sprites;
+    float maxSpeed = 0.1f;
 
     //State
     point_t position;

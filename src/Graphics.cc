@@ -9,6 +9,7 @@ Graphics::Graphics(int windowWidth, int windowHeight)
      m_cameraScale(windowWidth / 30.0)
 {
     m_window.setMouseCursorVisible(true);
+    m_backgroundSprite.setTexture(TextureBank::get("checkerboard.png"));
 }
 
 void Graphics::setSpriteScale(sf::Sprite & sprite, point_t worldSize)
@@ -46,6 +47,17 @@ void Graphics::setSpriteScale(sf::Sprite & sprite, point_t worldSize)
     }
 
     m_window.clear();
+
+    //Draw background
+    {
+        const int BG_TILE_SIZE = 20;
+        const point_t BG_POSITION = point_t(0,0);
+
+        point_t cameraPos = worldToCamera(BG_POSITION);
+        m_backgroundSprite.setPosition(sf::Vector2f(cameraPos));
+        m_window.draw(m_backgroundSprite);
+
+    }
 
     for(auto& character : gameState->characters)
     {
