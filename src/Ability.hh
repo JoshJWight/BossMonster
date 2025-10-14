@@ -28,7 +28,7 @@ public:
     //TODO spawning entities
     //TODO damage amount
 
-private:
+protected:
     int m_startTick;
     int m_duration;
 

@@ -46,11 +46,12 @@ void GameController::tick() {
         bool canUseAbilities = true;
         point_t abilityMovement(0,0);
         for(auto& ability : character->activeAbilities) {
-            abilityMovement += ability.movementVector(m_currentTick);
-            if(ability.animationLock(m_currentTick)) {
+            abilityMovement += ability->movementVector(m_currentTick);
+            std::cout << "Ability movement: " << abilityMovement.x << ", " << abilityMovement.y << std::endl;
+            if(ability->animationLock(m_currentTick)) {
                 animationLocked = true;
             }
-            if(!ability.allowOtherAbilities(m_currentTick)) {
+            if(!ability->allowOtherAbilities(m_currentTick)) {
                 canUseAbilities = false;
             }
         }
@@ -71,7 +72,17 @@ void GameController::tick() {
             }
         }
 
-        //TODO add new abilities from input
+        if(character->controllerType == PLAYER && canUseAbilities) {
+            point_t mousePos = m_graphics->getMousePos();
+            if(m_controls->skill1) {
+                point_t dashDir = math_util::normalize(mousePos - character->position);
+                character->activeAbilities.push_back(std::make_shared<Dash>(m_currentTick, dashDir));
+                std::cout << "Dashdir: " << dashDir.x << ", " << dashDir.y << std::endl;
+                std::cout << "Dash ability used" << std::endl;
+            }
+        }
+
+        //TODO AI control
     }
 
     
@@ -82,8 +93,8 @@ void GameController::tick() {
             std::remove_if(
                 character->activeAbilities.begin(),
                 character->activeAbilities.end(),
-                [this](const Ability& ability) {
-                    return ability.finished(m_currentTick);
+                [this](const std::shared_ptr<Ability>& ability) {
+                    return ability->finished(m_currentTick);
                 }
             ),
             character->activeAbilities.end()

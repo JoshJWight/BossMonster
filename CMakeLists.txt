@@ -13,6 +13,7 @@ add_executable(BossMonster
     src/Graphics.cc
     src/TextureBank.cc
     src/Controls.cc
+    src/Abilities.cc
 )
 
 # Include directories

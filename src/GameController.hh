@@ -6,6 +6,7 @@
 #include "GameState.hh"
 #include "Graphics.hh"
 #include "Controls.hh"
+#include "Abilities.hh"
 
 class GameController {
 public:

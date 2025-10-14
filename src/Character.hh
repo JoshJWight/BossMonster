@@ -39,7 +39,7 @@ public:
     //State
     point_t position;
     float angle_deg;
-    std::vector<Ability> activeAbilities;
+    std::vector<std::shared_ptr<Ability>> activeAbilities;
 
 };
 #endif
